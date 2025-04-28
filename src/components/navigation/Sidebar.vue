@@ -1,0 +1,53 @@
+<script setup>
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import { Braces, FolderOpenDot, UserRound } from "lucide-vue-next";
+
+const items = [
+  {
+    title: "Projects",
+    url: "/projects",
+    icon: FolderOpenDot,
+  },
+  {
+    title: "Stacks",
+    url: "/stacks",
+    icon: Braces,
+  },
+  {
+    title: "Students",
+    url: "/students",
+    icon: UserRound,
+  }
+];
+</script>
+
+<template>
+  <Sidebar>
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Application</SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem v-for="item in items" :key="item.title">
+              <SidebarMenuButton asChild>
+                <a :href="item.url">
+                  <component :is="item.icon" />
+                  <span class="text-md">{{ item.title }}</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+    </SidebarContent>
+  </Sidebar>
+</template>
