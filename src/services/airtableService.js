@@ -49,4 +49,9 @@ export const airtableService = {
   async deleteRecord(tableName, recordId) {
     await api.delete(`/${encodeURIComponent(tableName)}/${recordId}`);
   },
+
+  async getRecordById(tableName, recordId) {
+    const response = await api.get(`/${encodeURIComponent(tableName)}/${recordId}`);
+    return response.data;
+  }
 };

@@ -64,7 +64,7 @@
           </div>
 
           <div class="flex justify-center">
-            <Button type="submit" class="w-full">Register</Button>
+            <Button type="submit" class="w-full bg-pink-600 hover:bg-pink-700">Register</Button>
           </div>
         </form>
       </CardContent>

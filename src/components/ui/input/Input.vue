@@ -47,13 +47,16 @@ const isPasswordVariant = computed(() => props.variant === "password");
       "
     />
     <button
-      v-if="isPasswordVariant"
-      type="button"
-      @click="togglePasswordVisibility"
-      class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-400"
+        v-if="isPasswordVariant"
+        type="button"
+        @click="togglePasswordVisibility"
+        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-400 transition-all group"
     >
       <Eye v-if="isPasswordVisible" class="w-5 h-5" />
-      <EyeClosed v-else class="w-5 h-5" />
+      <span v-else class="relative block w-5 h-5">
+        <EyeClosed class="w-5 h-5 absolute transition-opacity duration-200 opacity-100 group-hover:opacity-0" />
+        <Eye class="w-5 h-5 absolute transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
+      </span>
     </button>
   </div>
 </template>

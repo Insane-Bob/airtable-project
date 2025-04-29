@@ -9,22 +9,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Button } from '@/components/ui/button';
 import { Braces, FolderOpenDot, UserRound } from "lucide-vue-next";
 
 const items = [
   {
     title: "Projects",
-    url: "/projects",
+    url: "/admin/projects",
     icon: FolderOpenDot,
   },
   {
     title: "Stacks",
-    url: "/stacks",
+    url: "/admin/stacks",
     icon: Braces,
   },
   {
     title: "Students",
-    url: "/students",
+    url: "/admin/students",
     icon: UserRound,
   }
 ];
@@ -49,5 +50,14 @@ const items = [
         </SidebarGroupContent>
       </SidebarGroup>
     </SidebarContent>
+    <SidebarFooter>
+      <div class="flex justify-center items-center mb-6">
+        <a href="/portfolios">
+          <Button class="w-fit hover:cursor-pointer" variant="outline">
+            See all portfolios
+          </Button>
+        </a>
+      </div>
+    </SidebarFooter>
   </Sidebar>
 </template>

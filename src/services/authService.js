@@ -20,7 +20,7 @@ export const authService = {
     const user = {
       Firstname: firstname,
       Lastname: lastname,
-      "E-mail": email,
+      Email: email,
       Password: hashedPassword,
       Year: year,
       Promotion: promotion,
@@ -34,7 +34,7 @@ export const authService = {
       id: createdUser.id,
       firstname: createdUser.fields.Firstname,
       lastname: createdUser.fields.Lastname,
-      email: createdUser.fields["E-mail"],
+      email: createdUser.fields.Email,
       year: createdUser.fields.Year,
       promotion: createdUser.fields.Promotion,
       roles: createdUser.fields.Roles,
@@ -45,7 +45,7 @@ export const authService = {
 
   async checkIfEmailExists(email, airtableService) {
     const users = await airtableService.getAllRecords("Users", {
-      filterByFormula: `{E-mail} = "${email}"`,
+      filterByFormula: `{Email} = "${email}"`,
     });
 
     return users.length > 0;
@@ -63,7 +63,7 @@ export const authService = {
     }
 
     const users = await airtableService.getAllRecords("Users", {
-      filterByFormula: `{E-mail} = "${email}"`,
+      filterByFormula: `{Email} = "${email}"`,
     });
     const storedUser = users[0].fields;
 
@@ -77,7 +77,7 @@ export const authService = {
       id: users[0].id,
       firstname: storedUser.Firstname,
       lastname: storedUser.Lastname,
-      email: storedUser["E-mail"],
+      email: storedUser["Email"],
       year: storedUser.Year,
       promotion: storedUser.Promotion,
       roles: storedUser.Roles,
@@ -87,5 +87,11 @@ export const authService = {
     userStore.setUser(user);
 
     return user;
+  },
+
+  logoutUser() {
+    const userStore = useUserStore();
+    userStore.logout();
+    return true;
   },
 };

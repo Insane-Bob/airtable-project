@@ -7,28 +7,34 @@ import StacksPage from '@/pages/stacks/StacksPage.vue';
 import StudentsPage from '@/pages/students/StudentsPage.vue';
 import { useUserStore } from '@/stores/userStore.js';
 import { createRouter, createWebHistory } from 'vue-router';
+import { authService } from '@/services/authService';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
+      redirect: '/portfolios',
+    },
+    {
+      path: '/admin',
       component: AppLayout,
+      redirect: '/admin/projects',
       children: [
         {
-          path: '/projects',
+          path: 'projects',
           name: 'Projects',
           component: ProjectsPage,
           meta: { requiresAuth: true, requiresAdmin: true },
         },
         {
-          path: '/stacks',
+          path: 'stacks',
           name: 'Stacks',
           component: StacksPage,
           meta: { requiresAuth: true, requiresAdmin: true },
         },
         {
-          path: '/students',
+          path: 'students',
           name: 'Students',
           component: StudentsPage,
           meta: { requiresAuth: true, requiresAdmin: true },
@@ -46,6 +52,14 @@ const router = createRouter({
       component: RegisterPage,
     },
     {
+      path: '/logout',
+      name: 'Logout',
+      beforeEnter: (to, from, next) => {
+        authService.logoutUser();
+        next({ name: 'Login' });
+      },
+    },
+    {
       path: '/portfolios',
       name: "Portfolios",
       component: PortfoliosPage,
@@ -58,12 +72,11 @@ router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   const user = userStore.user;
   const isAuthenticated = !!user;
-  const isAdmin = user?.roles === "Admin";
 
   if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'Login' });
-  } else if (to.meta.requiresAdmin && !isAdmin) {
-    next({ name: 'Dashboard' });
+  } else if (to.meta.requiresAdmin && !userStore.isAdmin) {
+    next({ name: 'Portfolios' });
   } else {
     next();
   }

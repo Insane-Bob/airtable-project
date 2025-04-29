@@ -29,13 +29,12 @@
             />
           </div>
 
-          <!-- Affichage de l'erreur -->
           <div v-if="error" class="text-red-500 text-sm mt-2 mb-2">
             {{ error }}
           </div>
 
           <div class="flex justify-center">
-            <Button type="submit" class="w-full">Login</Button>
+            <Button type="submit" class="w-full bg-pink-600 hover:bg-pink-700">Login</Button>
           </div>
         </form>
       </CardContent>
@@ -88,7 +87,7 @@ const handleLogin = async () => {
   if (user) {
     console.log("Store après login:", userStore.user);
 
-    router.push("/projects");
+    router.push("/admin/projects");
   } else {
     error.value = "Email or password is incorrect.";
   }

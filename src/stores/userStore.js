@@ -17,5 +17,9 @@ export const useUserStore = defineStore('user', {
   },
   getters: {
     getAuthStatus: (state) => !!state.user,
+    isAdmin: (state) => state.user && state.user.roles === 'Admin',
+    isStudent (state) {
+      return state.user && (state.user.roles === 'Student' || state.user.roles === 'Admin');
+    }
   }
 });
