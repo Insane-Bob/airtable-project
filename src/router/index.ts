@@ -3,6 +3,7 @@ import LoginPage from '@/pages/authentication/LoginPage.vue';
 import RegisterPage from '@/pages/authentication/RegisterPage.vue';
 import ProjectsPage from '@/pages/projects/ProjectsPage.vue';
 import PortfoliosPage from '@/pages/portfolios/PortfoliosPage.vue';
+import PortfolioDetailsPage from '@/pages/portfolios/PortfolioDetailsPage.vue';
 import StacksPage from '@/pages/stacks/StacksPage.vue';
 import StudentsPage from '@/pages/students/StudentsPage.vue';
 import { useUserStore } from '@/stores/userStore.js';
@@ -65,6 +66,12 @@ const router = createRouter({
       component: PortfoliosPage,
       meta: { requiresAuth: false, requiresAdmin: false }
     },
+    {
+      path: '/portfolio/:slug',
+      name: 'PortfolioDetailsPage',
+      component: PortfolioDetailsPage,
+      meta: { requiresAuth: false, requiresAdmin: false }
+    }
   ],
 });
 

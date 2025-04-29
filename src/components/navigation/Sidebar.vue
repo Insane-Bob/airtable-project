@@ -53,7 +53,7 @@ const items = [
     <SidebarFooter>
       <div class="flex justify-center items-center mb-6">
         <a href="/portfolios">
-          <Button class="w-fit hover:cursor-pointer" variant="outline">
+          <Button class="w-fit hover:cursor-pointer border-1 border-pink-500 bg-white text-pink-500 hover:bg-pink-500 hover:text-white transition-colors duration-300 ease-in-out">
             See all portfolios
           </Button>
         </a>

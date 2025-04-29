@@ -189,9 +189,7 @@ onMounted(async () => {
                 &times;
               </Button>
             </div>
-            <Button
-                @click="searchLanguages"
-                :disabled="isSearching"
+            <Button @click="searchProjects" :disabled="isSearching" class="bg-pink-500 hover:bg-pink-700"
             >
               {{ isSearching ? "Search in progress..." : "Search" }}
             </Button>
