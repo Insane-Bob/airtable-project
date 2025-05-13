@@ -34,9 +34,15 @@ export const airtableService = {
                 fields: data,
             },
         ];
-        const response = await api.post(`/${encodeURIComponent(tableName)}`, {records});
-        return response.data;
+        try {
+            const response = await api.post(`/${encodeURIComponent(tableName)}`, {records});
+            return response.data;
+        } catch (error) {
+            console.error("Airtable createRecord error:", error.response?.data || error.message);
+            throw error;
+        }
     },
+
 
     async updateRecord(tableName, recordId, data) {
         const response = await api.patch(

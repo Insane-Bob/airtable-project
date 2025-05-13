@@ -111,7 +111,7 @@ const handleRegister = async () => {
     const userData = {
       Firstname: firstname.value,
       Lastname: lastname.value,
-      "E-mail": email.value,
+      Email: email.value,
       Password: hashedPassword,
       Year: year.value,
       Promotion: promotion.value,

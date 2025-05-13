@@ -65,6 +65,8 @@ export const authService = {
     const users = await airtableService.getAllRecords("Users", {
       filterByFormula: `{Email} = "${email}"`,
     });
+
+    console.log(users);
     const storedUser = users[0].fields;
 
     const isPasswordCorrect = this.checkPassword(storedUser.Password, password);
